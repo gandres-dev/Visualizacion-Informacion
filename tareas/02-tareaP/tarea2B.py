@@ -62,7 +62,7 @@ myLapiz.speed(8)
 
 centrar = 100
 left_corner = (-380+centrar, 350-centrar)
-right_corner = (200+centrar, 350-centrar)
+right_corner = (180+centrar, 350-centrar)
 
 myLapiz.penup()
 myLapiz.pencolor('grey')
