@@ -1,1 +1,12 @@
+Web sites:
+https://datavizproject.com/
+https://www.data-to-viz.com/
+https://python-graph-gallery.com/
+https://d3-graph-gallery.com/
+
 https://streamlit.io/
+https://stackoverflow.com/questions/58440524/change-pandas-plotting-backend-to-get-interactive-plots-instead-of-matplotlib-st
+https://github.com/PatrikHlobil/Pandas-Bokeh
+plotting.backend
+https://www.storytellingwithdata.com/books
+https://altair-viz.github.io/gallery/index.html
