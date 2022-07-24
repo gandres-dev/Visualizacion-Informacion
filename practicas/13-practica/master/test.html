@@ -1,0 +1,204 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 750px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+        #loadingBar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width: 100%;
+            height: 750px;
+            background-color:rgba(200,200,200,0.8);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            opacity:1;
+        }
+
+        #bar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:20px;
+            height:20px;
+            margin:auto auto auto auto;
+            border-radius:11px;
+            border:2px solid rgba(30,30,30,0.05);
+            background: rgb(0, 173, 246); /* Old browsers */
+            box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+        }
+
+        #border {
+            position:absolute;
+            top:10px;
+            left:10px;
+            width:500px;
+            height:23px;
+            margin:auto auto auto auto;
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+
+        #text {
+            position:absolute;
+            top:8px;
+            left:530px;
+            width:30px;
+            height:50px;
+            margin:auto auto auto auto;
+            font-size:22px;
+            color: #000000;
+        }
+
+        div.outerBorder {
+            position:relative;
+            top:400px;
+            width:600px;
+            height:44px;
+            margin:auto auto auto auto;
+            border:8px solid rgba(0,0,0,0.1);
+            background: rgb(252,252,252); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+            border-radius:72px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+<div id="loadingBar">
+    <div class="outerBorder">
+        <div id="text">0%</div>
+        <div id="border">
+            <div id="bar"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "red", "id": 0, "label": "Python", "shape": "dot", "size": 35}, {"color": "orange", "id": 1, "label": "Visualization", "shape": "dot", "size": 30}, {"color": "orange", "id": 2, "label": "Machine Learning", "shape": "dot", "size": 30}, {"color": "orange", "id": 3, "label": "NLP", "shape": "dot", "size": 30}, {"color": "orange", "id": 4, "label": "Testing", "shape": "dot", "size": 30}, {"color": "orange", "id": 5, "label": "Data Analysis / EDA", "shape": "dot", "size": 30}, {"color": "orange", "id": 6, "label": "Data Processing", "shape": "dot", "size": 30}, {"color": "orange", "id": 7, "label": "Finance", "shape": "dot", "size": 30}, {"color": "orange", "id": 8, "label": "Basic Usage", "shape": "dot", "size": 30}, {"color": "green", "id": 9, "label": "Dashboard", "shape": "dot", "size": 25}, {"color": "green", "id": 10, "label": "D3.js", "shape": "dot", "size": 25}, {"color": "green", "id": 11, "label": "Extraordinary Visualization", "shape": "dot", "size": 25}, {"color": "green", "id": 12, "label": "Feature Engineering", "shape": "dot", "size": 25}, {"color": "green", "id": 13, "label": "FlowChart", "shape": "dot", "size": 25}, {"color": "green", "id": 14, "label": "Geo", "shape": "dot", "size": 25}, {"color": "green", "id": 15, "label": "Graph / Network", "shape": "dot", "size": 25}, {"color": "green", "id": 16, "label": "Hyperparameter Tuning", "shape": "dot", "size": 25}, {"color": "green", "id": 17, "label": "Information Retrieval", "shape": "dot", "size": 25}, {"color": "green", "id": 18, "label": "Integration", "shape": "dot", "size": 25}, {"color": "green", "id": 19, "label": "Interactive Visualization", "shape": "dot", "size": 25}, {"color": "green", "id": 20, "label": "Keras", "shape": "dot", "size": 25}, {"color": "green", "id": 21, "label": "Performance", "shape": "dot", "size": 25}, {"color": "green", "id": 22, "label": "Pytorch", "shape": "dot", "size": 25}, {"color": "green", "id": 23, "label": "Static Visualization", "shape": "dot", "size": 25}, {"color": "green", "id": 24, "label": "TimeSeries", "shape": "dot", "size": 25}, {"color": "green", "id": 25, "label": "Tensorflow", "shape": "dot", "size": 25}, {"color": "green", "id": 26, "label": "TPOT", "shape": "dot", "size": 25}, {"color": "green", "id": 27, "label": "XAI", "shape": "dot", "size": 25}, {"color": "blue", "id": 28, "label": "altair", "shape": "dot", "size": 15}, {"color": "blue", "id": 29, "label": "auto-sklearn", "shape": "dot", "size": 15}, {"color": "blue", "id": 30, "label": "auto-viml", "shape": "dot", "size": 15}, {"color": "blue", "id": 31, "label": "bokeh", "shape": "dot", "size": 15}, {"color": "blue", "id": 32, "label": "candela", "shape": "dot", "size": 15}, {"color": "blue", "id": 33, "label": "cufflinks", "shape": "dot", "size": 15}, {"color": "blue", "id": 34, "label": "d3py", "shape": "dot", "size": 15}, {"color": "blue", "id": 35, "label": "dash", "shape": "dot", "size": 15}, {"color": "blue", "id": 36, "label": "dask", "shape": "dot", "size": 15}, {"color": "blue", "id": 37, "label": "dtale", "shape": "dot", "size": 15}, {"color": "blue", "id": 38, "label": "dtreeviz", "shape": "dot", "size": 15}, {"color": "blue", "id": 39, "label": "dx_analytics", "shape": "dot", "size": 15}, {"color": "blue", "id": 40, "label": "eli5", "shape": "dot", "size": 15}, {"color": "blue", "id": 41, "label": "featuretools", "shape": "dot", "size": 15}, {"color": "blue", "id": 42, "label": "folium", "shape": "dot", "size": 15}, {"color": "blue", "id": 43, "label": "functools", "shape": "dot", "size": 15}, {"color": "blue", "id": 44, "label": "fundamentalanalysis", "shape": "dot", "size": 15}, {"color": "blue", "id": 45, "label": "gensim", "shape": "dot", "size": 15}, {"color": "blue", "id": 46, "label": "geopandas", "shape": "dot", "size": 15}, {"color": "blue", "id": 47, "label": "geopy", "shape": "dot", "size": 15}, {"color": "blue", "id": 48, "label": "graph-tool", "shape": "dot", "size": 15}, {"color": "blue", "id": 49, "label": "holoview", "shape": "dot", "size": 15}, {"color": "blue", "id": 50, "label": "itertools", "shape": "dot", "size": 15}, {"color": "blue", "id": 51, "label": "jaal", "shape": "dot", "size": 15}, {"color": "blue", "id": 52, "label": "lazypredict", "shape": "dot", "size": 15}, {"color": "blue", "id": 53, "label": "leaflet", "shape": "dot", "size": 15}, {"color": "blue", "id": 54, "label": "lime", "shape": "dot", "size": 15}, {"color": "blue", "id": 55, "label": "luminaire", "shape": "dot", "size": 15}, {"color": "blue", "id": 56, "label": "lux", "shape": "dot", "size": 15}, {"color": "blue", "id": 57, "label": "matplotlib", "shape": "dot", "size": 15}, {"color": "blue", "id": 58, "label": "missingno", "shape": "dot", "size": 15}, {"color": "blue", "id": 59, "label": "more-itertools", "shape": "dot", "size": 15}, {"color": "blue", "id": 60, "label": "mutmut", "shape": "dot", "size": 15}, {"color": "blue", "id": 61, "label": "neptune", "shape": "dot", "size": 15}, {"color": "blue", "id": 62, "label": "networkx", "shape": "dot", "size": 15}, {"color": "blue", "id": 63, "label": "neuraxle", "shape": "dot", "size": 15}, {"color": "blue", "id": 64, "label": "nltk", "shape": "dot", "size": 15}, {"color": "blue", "id": 65, "label": "numpy", "shape": "dot", "size": 15}, {"color": "blue", "id": 66, "label": "nvd3", "shape": "dot", "size": 15}, {"color": "blue", "id": 67, "label": "pandas", "shape": "dot", "size": 15}, {"color": "blue", "id": 68, "label": "pandas-datareader", "shape": "dot", "size": 15}, {"color": "blue", "id": 69, "label": "pandas-log", "shape": "dot", "size": 15}, {"color": "blue", "id": 70, "label": "pandas-profiler", "shape": "dot", "size": 15}, {"color": "blue", "id": 71, "label": "pandera", "shape": "dot", "size": 15}, {"color": "blue", "id": 72, "label": "panel", "shape": "dot", "size": 15}, {"color": "blue", "id": 73, "label": "pattern", "shape": "dot", "size": 15}, {"color": "blue", "id": 74, "label": "plotly", "shape": "dot", "size": 15}, {"color": "blue", "id": 75, "label": "polyglot", "shape": "dot", "size": 15}, {"color": "blue", "id": 76, "label": "pycaret", "shape": "dot", "size": 15}, {"color": "blue", "id": 77, "label": "pydantic", "shape": "dot", "size": 15}, {"color": "blue", "id": 78, "label": "pyflowchart", "shape": "dot", "size": 15}, {"color": "blue", "id": 79, "label": "pynlpl", "shape": "dot", "size": 15}, {"color": "blue", "id": 80, "label": "pypolars", "shape": "dot", "size": 15}, {"color": "blue", "id": 81, "label": "pystemmer", "shape": "dot", "size": 15}, {"color": "blue", "id": 82, "label": "pyterrier", "shape": "dot", "size": 15}, {"color": "blue", "id": 83, "label": "pytest", "shape": "dot", "size": 15}, {"color": "blue", "id": 84, "label": "pyts", "shape": "dot", "size": 15}, {"color": "blue", "id": 85, "label": "pyvis", "shape": "dot", "size": 15}, {"color": "blue", "id": 86, "label": "roughviz", "shape": "dot", "size": 15}, {"color": "blue", "id": 87, "label": "rshap", "shape": "dot", "size": 15}, {"color": "blue", "id": 88, "label": "scikit-learn", "shape": "dot", "size": 15}, {"color": "blue", "id": 89, "label": "scikit-optimize", "shape": "dot", "size": 15}, {"color": "blue", "id": 90, "label": "seaborn", "shape": "dot", "size": 15}, {"color": "blue", "id": 91, "label": "shapash", "shape": "dot", "size": 15}, {"color": "blue", "id": 92, "label": "sigma.js", "shape": "dot", "size": 15}, {"color": "blue", "id": 93, "label": "sklearn laboratory", "shape": "dot", "size": 15}, {"color": "blue", "id": 94, "label": "sklearn-deap", "shape": "dot", "size": 15}, {"color": "blue", "id": 95, "label": "sklearn-pandas", "shape": "dot", "size": 15}, {"color": "blue", "id": 96, "label": "sklearn-xarray", "shape": "dot", "size": 15}, {"color": "blue", "id": 97, "label": "spacy", "shape": "dot", "size": 15}, {"color": "blue", "id": 98, "label": "sql-test", "shape": "dot", "size": 15}, {"color": "blue", "id": 99, "label": "stanford corenlp python", "shape": "dot", "size": 15}, {"color": "blue", "id": 100, "label": "stumpy", "shape": "dot", "size": 15}, {"color": "blue", "id": 101, "label": "sweetviz", "shape": "dot", "size": 15}, {"color": "blue", "id": 102, "label": "textblob", "shape": "dot", "size": 15}, {"color": "blue", "id": 103, "label": "tpot", "shape": "dot", "size": 15}, {"color": "blue", "id": 104, "label": "tsfresh", "shape": "dot", "size": 15}, {"color": "blue", "id": 105, "label": "vaex", "shape": "dot", "size": 15}, {"color": "blue", "id": 106, "label": "visdcc", "shape": "dot", "size": 15}, {"color": "blue", "id": 107, "label": "vocabulary", "shape": "dot", "size": 15}, {"color": "blue", "id": 108, "label": "yfinance", "shape": "dot", "size": 15}]);
+        edges = new vis.DataSet([{"from": 0, "to": 8}, {"from": 0, "to": 7}, {"from": 0, "to": 6}, {"from": 0, "to": 5}, {"from": 0, "to": 2}, {"from": 0, "to": 1}, {"from": 0, "to": 4}, {"from": 8, "to": 43}, {"from": 8, "to": 50}, {"from": 8, "to": 59}, {"from": 6, "to": 67}, {"from": 6, "to": 65}, {"from": 6, "to": 21}, {"from": 21, "to": 105}, {"from": 21, "to": 80}, {"from": 21, "to": 36}, {"from": 7, "to": 33}, {"from": 7, "to": 39}, {"from": 7, "to": 44}, {"from": 7, "to": 108}, {"from": 1, "to": 33}, {"from": 2, "to": 12}, {"from": 2, "to": 16}, {"from": 2, "to": 20}, {"from": 2, "to": 3}, {"from": 2, "to": 22}, {"from": 2, "to": 25}, {"from": 2, "to": 26}, {"from": 2, "to": 27}, {"from": 2, "to": 30}, {"from": 2, "to": 38}, {"from": 2, "to": 76}, {"from": 2, "to": 52}, {"from": 2, "to": 88}, {"from": 52, "to": 76}, {"from": 12, "to": 41}, {"from": 12, "to": 104}, {"from": 88, "to": 96}, {"from": 88, "to": 95}, {"from": 88, "to": 94}, {"from": 29, "to": 88}, {"from": 88, "to": 93}, {"from": 61, "to": 93}, {"from": 16, "to": 63}, {"from": 16, "to": 89}, {"from": 27, "to": 30}, {"from": 27, "to": 40}, {"from": 27, "to": 87}, {"from": 27, "to": 54}, {"from": 3, "to": 17}, {"from": 3, "to": 64}, {"from": 3, "to": 45}, {"from": 3, "to": 88}, {"from": 3, "to": 97}, {"from": 3, "to": 81}, {"from": 3, "to": 99}, {"from": 3, "to": 102}, {"from": 3, "to": 73}, {"from": 3, "to": 75}, {"from": 3, "to": 79}, {"from": 3, "to": 107}, {"from": 17, "to": 82}, {"from": 1, "to": 10}, {"from": 1, "to": 9}, {"from": 1, "to": 11}, {"from": 1, "to": 13}, {"from": 1, "to": 14}, {"from": 1, "to": 15}, {"from": 1, "to": 19}, {"from": 1, "to": 23}, {"from": 10, "to": 34}, {"from": 10, "to": 66}, {"from": 9, "to": 31}, {"from": 9, "to": 35}, {"from": 9, "to": 49}, {"from": 9, "to": 72}, {"from": 9, "to": 74}, {"from": 11, "to": 32}, {"from": 11, "to": 86}, {"from": 13, "to": 78}, {"from": 14, "to": 47}, {"from": 14, "to": 42}, {"from": 14, "to": 53}, {"from": 14, "to": 46}, {"from": 15, "to": 38}, {"from": 15, "to": 48}, {"from": 15, "to": 51}, {"from": 15, "to": 62}, {"from": 15, "to": 85}, {"from": 15, "to": 92}, {"from": 15, "to": 106}, {"from": 19, "to": 28}, {"from": 19, "to": 31}, {"from": 19, "to": 33}, {"from": 19, "to": 49}, {"from": 19, "to": 74}, {"from": 19, "to": 91}, {"from": 23, "to": 56}, {"from": 23, "to": 57}, {"from": 23, "to": 58}, {"from": 23, "to": 70}, {"from": 23, "to": 90}, {"from": 23, "to": 91}, {"from": 5, "to": 24}, {"from": 5, "to": 37}, {"from": 5, "to": 56}, {"from": 5, "to": 91}, {"from": 5, "to": 101}, {"from": 5, "to": 58}, {"from": 5, "to": 67}, {"from": 67, "to": 68}, {"from": 67, "to": 69}, {"from": 67, "to": 70}, {"from": 24, "to": 55}, {"from": 24, "to": 84}, {"from": 67, "to": 95}, {"from": 24, "to": 100}, {"from": 35, "to": 106}, {"from": 4, "to": 18}, {"from": 4, "to": 60}, {"from": 4, "to": 83}, {"from": 4, "to": 98}, {"from": 18, "to": 71}, {"from": 18, "to": 77}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+        network.on("stabilizationProgress", function(params) {
+      		document.getElementById('loadingBar').removeAttribute("style");
+	        var maxWidth = 496;
+	        var minWidth = 20;
+	        var widthFactor = params.iterations/params.total;
+	        var width = Math.max(minWidth,maxWidth * widthFactor);
+
+	        document.getElementById('bar').style.width = width + 'px';
+	        document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+	    });
+	    network.once("stabilizationIterationsDone", function() {
+	        document.getElementById('text').innerHTML = '100%';
+	        document.getElementById('bar').style.width = '496px';
+	        document.getElementById('loadingBar').style.opacity = 0;
+	        // really clean the dom element
+	        setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+	    });
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
