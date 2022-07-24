@@ -1,0 +1,9 @@
+# Otros graficos
+# Horizontal con df
+df.source.value_counts().plot(kind='barh')
+
+
+# Etiquetas verticales
+#df.source.hist()
+#plt.xticks(rotation=90)
+
