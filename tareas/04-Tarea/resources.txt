@@ -1,5 +1,0 @@
-- https://stackoverflow.com/questions/45281297/group-by-week-in-pandas
-- https://stackoverflow.com/questions/37787698/how-to-sort-pandas-dataframe-from-one-column
-- https://stackoverflow.com/questions/28161356/convert-column-to-date-format-pandas-dataframe
-- https://stackoverflow.com/questions/42528921/how-to-prevent-overlapping-x-axis-labels-in-sns-countplot
-- https://www.redaccionmedica.com/secciones/sanidad-hoy/covid-30251-nuevos-casos-fin-semana-incidencia-acerca-400-5542
