@@ -46,7 +46,7 @@ comportamiento de las aerolineas a traves del tiempo, conocer las aerolineas con
 años en cada aerolinea y ver el flujo de vuelos de las aerolineas.
 
 
-![viajes](img/index.png)
+![viajes](img/viajes_miami.png)
 
 
 ## [Proyecto 2 Análisis del turismo en tiempos de Covid-19](https://nbviewer.org/github/gandres-dev/Visualizacion-Informacion/tree/main/proyectos/proyecto2/notebook.ipynb)
