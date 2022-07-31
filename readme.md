@@ -31,14 +31,47 @@ Repositorio de notas, practicas, tareas y proyectos del curso de Visualización 
   - [Práctica 14](https://nbviewer.org/github/gandres-dev/Visualizacion-Informacion/tree/main/practicas/14-practica)
     - [Tarea - Representación de volumen](https://nbviewer.org/github/gandres-dev/Visualizacion-Informacion/tree/main/tareas/14-Tarea/)
   - [Práctica 15](https://nbviewer.org/github/gandres-dev/Visualizacion-Informacion/tree/main/practicas/15-practica/Practica-15.ipynb)    
-        
-
-
-  
-
-  
-
-  
 
 
 <!-- - []() -->
+
+---
+## [Proyecto 1 Análisis de Europuertos](https://nbviewer.org/github/gandres-dev/Visualizacion-Informacion/tree/main/proyectos/proyecto1/notebook.ipynb)
+
+El Departamento de Transporte de los Estados Unidos abreviado como USDOT recibe informes de tráfico de
+las aerolı́neas estadounidenses e internacionales que operan desde y hacia los aeropuertos estadounidenses. Cubren
+los años 1990 a 2020 (US Air Traffic 1990-2020).
+Deseamos a conocer a partir de este conjunto información acerca de los vuelos locales y extranjeros, ver el
+comportamiento de las aerolineas a traves del tiempo, conocer las aerolineas con más vuelos, ver el progreso en los
+años en cada aerolinea y ver el flujo de vuelos de las aerolineas.
+
+
+![viajes](img/index.png)
+
+
+## [Proyecto 2 Análisis del turismo en tiempos de Covid-19](https://nbviewer.org/github/gandres-dev/Visualizacion-Informacion/tree/main/proyectos/proyecto2/notebook.ipynb)
+
+Base datos de Covid: https://www.gob.mx/salud/documentos/datos-abiertos-152127
+
+El conjunto utilizado para nuestro análisis será acerca del covid-19 en México proporcionado en el sitio web datos
+abiertos, y aparte utilizaremos datos proporcionados por el INEGI respecto al turismo. Con ello se desea conocer la
+relación y afectación que tuvo el Covid-19 al compararlo con el turismo. Nuestra hipótesis es que la pandemia y el
+encierro afectaron al turismo de forma que la cantidad de personas que emigraban e inmigraban del paı́s disminuyó
+de forma considerable.
+
+![covid](img/covid.jpg)
+
+
+## Profesor
+**Dr. Edgar Garduño**
+
+---
+## Recursos electrónicos
+1. https://datavizproject.com/
+1. https://www.data-to-viz.com/
+1. https://python-graph-gallery.com/
+1. https://d3-graph-gallery.com/
+1. https://altair-viz.github.io/gallery/index.html
+---
+## Bibliografía básica:
+1. Fundamentals of Data Visualization A Primer on Making Informative and Compelling Figures by Claus O. Wilke.
